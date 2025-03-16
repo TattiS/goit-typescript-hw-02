@@ -1,10 +1,24 @@
 .header {
-  width: 320px;
+  width: 100%;
   margin: 0px auto;
   padding: 10px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  flex-wrap: nowrap;
+  justify-content: space-around;
   gap: 10px;
-  background-color: navy;
+  background-color: #7e4eff;
+}
+.searchForm {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: baseline;
+}
+.searchInput {
+  width: 320px;
+  margin: 10px auto;
+  display: block;
+  font-size: 16px;
+  line-height: 1.15;
 }

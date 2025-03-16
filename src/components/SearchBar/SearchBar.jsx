@@ -1,32 +1,36 @@
-import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import css from "./SearchBar.module.css";
-function SearchBar(onSubmit) {
-  const [inputValue, setInputValue] = useState("");
+function SearchBar({ onSearch }) {
   const submitHandler = (event) => {
     event.preventDefault();
-    onSubmit(inputValue);
-    setInputValue("");
-  };
-  const changeHandler = (event) => {
-    setInputValue(event.target.value);
+    const form = event.target;
+    const searchTerm = form.elements.search.value;
+    if (searchTerm.trim() === "") {
+      toast.error("You need to add any word for seaching", {
+        position: "top-right",
+      });
+      return;
+    }
+    onSearch(searchTerm.trim());
+    //form.reset();
   };
 
   return (
     <header className={css.header}>
-      <form>
+      <form className={css.searchForm} onSubmit={submitHandler}>
         <input
+          className={css.searchInput}
           type="text"
           autoComplete="off"
           autoFocus
           placeholder="Search images and photos"
           name="search"
-          value={inputValue}
-          onChange={changeHandler}
         />
-        <button type="submit" onSubmit={submitHandler}>
+        <button className={css.submitBtn} type="submit">
           Search
         </button>
       </form>
+      <Toaster />
     </header>
   );
 }

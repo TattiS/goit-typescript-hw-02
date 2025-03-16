@@ -1,0 +1,43 @@
+.overlay {
+  background: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  position: relative;
+  background: transparent;
+  outline: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  max-width: 80%;
+  max-height: 80%;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+}
+
+.modalTxtContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.modalTxtContainer p {
+  font-size: 16px;
+}

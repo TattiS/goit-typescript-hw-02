@@ -1,0 +1,12 @@
+.cardImg {
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.cardImg:hover {
+  transform: scale(1.1);
+}
