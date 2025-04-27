@@ -12,7 +12,7 @@ function ImageCard({ img, onClick }: IImageCardProps) {
       <img
         className={css.cardImg}
         src={img.urls.small}
-        alt={img.alt_description}
+        alt={img.alt_description ?? "Image"}
         onClick={() => onClick(img)}
       />
     </div>
