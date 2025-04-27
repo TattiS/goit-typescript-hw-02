@@ -81,3 +81,9 @@ export interface TopicSubmission {
   status: "approved" | "rejected" | "pending";
   approved_on?: string;
 }
+
+export interface IPicturesResponse {
+  total: number;
+  total_pages: number;
+  results: IImage[];
+}

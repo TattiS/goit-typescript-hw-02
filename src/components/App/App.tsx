@@ -8,7 +8,7 @@ import SearchBox from "../SearchBar/SearchBar";
 import ImageGallery from "../ImageGallery/ImageGallery";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "../ImageModal/ImageModal";
-import { IImage } from "../types";
+import { IImage, IPicturesResponse } from "../types";
 
 function App() {
   const [pictures, setPictures] = useState<IImage[]>([]);
@@ -28,7 +28,9 @@ function App() {
       setError(false);
       setLoading(true);
 
-      const { results, total_pages } = await getPictures(newSearchTerm);
+      const { results, total_pages }: IPicturesResponse = await getPictures(
+        newSearchTerm
+      );
       setPictures(results);
       setTotalPages(total_pages);
       if (total_pages === 0) {
@@ -41,7 +43,14 @@ function App() {
           }
         );
       }
-    } catch (error) {
+    } catch (err) {
+      if (err instanceof Error) {
+        toast.error(err.message, {
+          duration: 4000,
+          position: "top-right",
+          icon: "⚠️",
+        });
+      }
       setError(true);
     } finally {
       setLoading(false);
@@ -53,9 +62,19 @@ function App() {
     try {
       setPage(nextPage);
       setLoading(true);
-      const { results } = await getPictures(searchTerm, nextPage);
-      setPictures((prev) => [...prev, ...results]);
-    } catch (error) {
+      const { results }: IPicturesResponse = await getPictures(
+        searchTerm,
+        nextPage
+      );
+      if (results) setPictures((prev) => [...prev, ...results]);
+    } catch (err) {
+      if (err instanceof Error) {
+        toast.error(err.message, {
+          duration: 4000,
+          position: "top-right",
+          icon: "⚠️",
+        });
+      }
       setError(true);
     } finally {
       setLoading(false);
