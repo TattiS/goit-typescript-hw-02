@@ -7,8 +7,8 @@ interface ISearchProps {
   onSearch: (searchString: string) => void;
 }
 
-function SearchBar({ onSearch }: ISearchProps) {
-  const submitHandler = (event: React.FormEvent) => {
+const SearchBar: React.FC<ISearchProps> = ({ onSearch }) => {
+  const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
     const searchTerm = (form.elements.namedItem("search") as HTMLInputElement)
@@ -20,7 +20,6 @@ function SearchBar({ onSearch }: ISearchProps) {
       return;
     }
     onSearch(searchTerm.trim());
-    //form.reset();
   };
 
   return (
@@ -41,6 +40,6 @@ function SearchBar({ onSearch }: ISearchProps) {
       <Toaster />
     </header>
   );
-}
+};
 
 export default SearchBar;

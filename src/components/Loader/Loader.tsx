@@ -12,7 +12,7 @@ interface ILoaderProps {
   color?: string;
 }
 
-function Loader({ loading, color = "#535bf2" }: ILoaderProps) {
+const Loader: React.FC<ILoaderProps> = ({ loading, color = "#535bf2" }) => {
   return (
     <CircleLoader
       className={css.loader}
@@ -24,6 +24,6 @@ function Loader({ loading, color = "#535bf2" }: ILoaderProps) {
       data-testid="loader"
     />
   );
-}
+};
 
 export default Loader;

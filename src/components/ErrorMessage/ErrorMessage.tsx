@@ -4,12 +4,12 @@ interface IMsg {
   msg: string;
 }
 
-function ErrorMessage({ msg }: IMsg) {
+const ErrorMessage: React.FC<IMsg> = ({ msg }) => {
   return (
     <>
       <p className={css.errorMsg}>{msg}</p>
     </>
   );
-}
+};
 
 export default ErrorMessage;

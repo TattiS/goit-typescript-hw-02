@@ -6,8 +6,7 @@ interface IImageGalleryProps {
   images: IImage[];
   onImgClick: (img: IImage) => void;
 }
-
-function ImageGallery({ images, onImgClick }: IImageGalleryProps) {
+const ImageGallery: React.FC<IImageGalleryProps> = ({ images, onImgClick }) => {
   return (
     <ul className={css.gallery}>
       {images.map((image) => (
@@ -17,6 +16,6 @@ function ImageGallery({ images, onImgClick }: IImageGalleryProps) {
       ))}
     </ul>
   );
-}
+};
 
 export default ImageGallery;

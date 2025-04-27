@@ -3,7 +3,7 @@ interface ILoadMoreBtnProps {
   onLoadMore: () => void;
 }
 
-const LoadMoreBtn = ({ onLoadMore }: ILoadMoreBtnProps) => {
+const LoadMoreBtn: React.FC<ILoadMoreBtnProps> = ({ onLoadMore }) => {
   return (
     <button onClick={onLoadMore} className={css.moreBtn}>
       Load more

@@ -16,7 +16,11 @@ interface IImageModalProps {
   imageSrc: IImageSrc;
 }
 
-const ImageModal = ({ isOpen, onClose, imageSrc }: IImageModalProps) => {
+const ImageModal: React.FC<IImageModalProps> = ({
+  isOpen,
+  onClose,
+  imageSrc,
+}) => {
   return (
     <Modal
       isOpen={isOpen}

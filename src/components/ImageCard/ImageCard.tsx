@@ -6,7 +6,7 @@ interface IImageCardProps {
   onClick: (img: IImage) => void;
 }
 
-function ImageCard({ img, onClick }: IImageCardProps) {
+const ImageCard: React.FC<IImageCardProps> = ({ img, onClick }) => {
   return (
     <div className={css.imageContainer}>
       <img
@@ -17,6 +17,6 @@ function ImageCard({ img, onClick }: IImageCardProps) {
       />
     </div>
   );
-}
+};
 
 export default ImageCard;
