@@ -1,6 +1,12 @@
 import css from "./ImageCard.module.css";
+import { IImage } from "../types";
 
-function ImageCard({ img, onClick }) {
+interface IImageCardProps {
+  img: IImage;
+  onClick: (img: IImage) => void;
+}
+
+function ImageCard({ img, onClick }: IImageCardProps) {
   return (
     <div className={css.imageContainer}>
       <img

@@ -1,10 +1,18 @@
 import toast, { Toaster } from "react-hot-toast";
 import css from "./SearchBar.module.css";
-function SearchBar({ onSearch }) {
-  const submitHandler = (event) => {
+import React from "react";
+
+interface ISearchProps {
+  className?: string;
+  onSearch: (searchString: string) => void;
+}
+
+function SearchBar({ onSearch }: ISearchProps) {
+  const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();
-    const form = event.target;
-    const searchTerm = form.elements.search.value;
+    const form = event.target as HTMLFormElement;
+    const searchTerm = (form.elements.namedItem("search") as HTMLInputElement)
+      .value;
     if (searchTerm.trim() === "") {
       toast.error("You need to add any word for seaching", {
         position: "top-right",

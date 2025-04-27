@@ -1,6 +1,10 @@
 import css from "./ErrorMessage.module.css";
 
-function ErrorMessage({ msg }) {
+interface IMsg {
+  msg: string;
+}
+
+function ErrorMessage({ msg }: IMsg) {
   return (
     <>
       <p className={css.errorMsg}>{msg}</p>

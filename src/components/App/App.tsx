@@ -8,17 +8,18 @@ import SearchBox from "../SearchBar/SearchBar";
 import ImageGallery from "../ImageGallery/ImageGallery";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "../ImageModal/ImageModal";
+import { IImage } from "../types";
 
 function App() {
-  const [pictures, setPictures] = useState([]);
+  const [pictures, setPictures] = useState<IImage[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState<IImage | null>(null);
 
-  const searchHandler = async (newSearchTerm) => {
+  const searchHandler = async (newSearchTerm: string) => {
     try {
       setPictures([]);
       setSearchTerm(newSearchTerm);
@@ -41,7 +42,7 @@ function App() {
         );
       }
     } catch (error) {
-      setError(error);
+      setError(true);
     } finally {
       setLoading(false);
     }
@@ -55,19 +56,19 @@ function App() {
       const { results } = await getPictures(searchTerm, nextPage);
       setPictures((prev) => [...prev, ...results]);
     } catch (error) {
-      setError(error);
+      setError(true);
     } finally {
       setLoading(false);
     }
   };
 
-  const onImgClickHandler = (image) => {
+  const onImgClickHandler = (image: IImage): void => {
     if (!selectedImage) {
       setSelectedImage(image);
     }
   };
 
-  const closeModalHandler = () => setSelectedImage(null);
+  const closeModalHandler = (): void => setSelectedImage(null);
 
   useEffect(() => {
     if (pictures.length > 0) {
@@ -89,11 +90,13 @@ function App() {
         <LoadMoreBtn onLoadMore={loadMoreHandler} />
       )}
 
-      <ImageModal
-        isOpen={!!selectedImage}
-        onClose={closeModalHandler}
-        imageSrc={selectedImage}
-      />
+      {selectedImage && (
+        <ImageModal
+          isOpen={!!selectedImage}
+          onClose={closeModalHandler}
+          imageSrc={selectedImage}
+        />
+      )}
       <Toaster />
     </>
   );

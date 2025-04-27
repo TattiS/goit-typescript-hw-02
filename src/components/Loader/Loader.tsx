@@ -7,7 +7,12 @@ const override = {
   borderColor: "#535bf2",
 };
 
-function Loader({ loading, color = "#535bf2" }) {
+interface ILoaderProps {
+  loading: boolean;
+  color?: string;
+}
+
+function Loader({ loading, color = "#535bf2" }: ILoaderProps) {
   return (
     <CircleLoader
       className={css.loader}
